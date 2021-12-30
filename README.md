@@ -36,7 +36,7 @@ config directory. Depending on your OS and settings usually:
 
 First character of each sound file will be used as the trigger for this sample.
 Therefore, first characters have to be unique for all files.
-To achive this you can (and should) prefix each file with the desired trigger 
+To achieve this you can (and should) prefix each file with the desired trigger 
 key followed by an underscore: 
 
 ```
