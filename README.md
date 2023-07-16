@@ -25,35 +25,35 @@ cd soundboi
 cargo build --release
 ```
 
+Place the resulting executable `target/release/soundboi`
+somewhere in your `$PATH` to make it accessible from anywhere
+
 ## usage
 
-Place all your sound samples in a folder called `soundboi` inside your XDG
-config directory. Depending on your OS and settings usually:
+Place all your sound samples in a folder.
 
-* Linux: `/home/alice/.config/soundboi`
-* Windows: `C:\Users\Alice\AppData\Roaming\soundboi`
-* Mac: `/Users/Alice/Library/Application Support/soundboi`
-
-First character of each sound file will be used as the trigger for this sample.
+First character of each filename will be used to the trigger the sample when
+pressed on the keyboard.
 Therefore, first characters have to be unique for all files.
-To achieve this you can (and should) prefix each file with the desired trigger 
-key followed by an underscore: 
+To achieve this you can (and should) prefix each file with the desired trigger
+key followed by an underscore:
 
 ```
-~/.config/soundboi> ls                                                      
+~/my_samples> ls
 a_applause.wav	d_laser.wav  f_laughter.mp3  s_gunshot.wav
 ```
-Now run soundboi
+Now run soundboi inside this folder
 
 ```
-cargo run --release
+cd ~/my_samples
+soundboi
 a: applause
 d: laser
 f: laughter
 s: gunshot
 ```
 
-You will get a map of the keys and samples and are ready to have fun with your 
+You will get a map of the keys and samples and are ready to have fun with your
 coworkers.
 
 Simply press Ctrl-C to exit `soundboi`.

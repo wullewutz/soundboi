@@ -3,13 +3,11 @@ use std::fs::File;
 use std::io::BufReader;
 use std::path::PathBuf;
 
-use crossterm::event::{read, Event, KeyCode, KeyEvent, KeyModifiers};
+use crossterm::event::{read, Event, KeyCode, KeyEvent, KeyEventKind, KeyEventState, KeyModifiers};
 use crossterm::terminal::{disable_raw_mode, enable_raw_mode};
 
 use rodio::source::{Buffered, Source};
 use rodio::{Decoder, OutputStream};
-
-use dirs::config_dir;
 
 type SoundBoard = HashMap<char, Buffered<Decoder<BufReader<File>>>>;
 
@@ -49,9 +47,7 @@ fn extract_meta(f: PathBuf) -> Result<(char, String), Box<dyn std::error::Error>
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let (_stream, stream_handle) = OutputStream::try_default()?;
-    let dir = config_dir()
-        .ok_or("Could not detect config dir")?
-        .join("soundboi");
+    let dir = std::env::current_dir()?;
     let map = build_soundboard(dir)?;
     enable_raw_mode()?;
     loop {
@@ -60,10 +56,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             Event::Key(KeyEvent {
                 code: KeyCode::Char('c'),
                 modifiers: KeyModifiers::CONTROL,
+                kind: KeyEventKind::Press,
+                state: KeyEventState::NONE,
             }) => break,
             Event::Key(KeyEvent {
                 code: KeyCode::Char(x),
                 modifiers: KeyModifiers::NONE,
+                kind: KeyEventKind::Press,
+                state: KeyEventState::NONE,
             }) => {
                 if let Some(src) = map.get(&x) {
                     stream_handle.play_raw(src.clone().convert_samples())?;
