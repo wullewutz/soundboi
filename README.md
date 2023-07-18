@@ -13,20 +13,22 @@ Play sound samples from your CLI using one keystroke per sample.
 * zero config
 * supports mp3, wav and ogg samples
 
-## build instructions
+## installation
 
 Right now, you need to build `soundboi` yourself.
-You need Rust [installed](https://www.rust-lang.org/learn/get-started)
+You need to [install](https://www.rust-lang.org/learn/get-started) Rust
 on your machine if you don't have already.
 
 ```
 git clone https://github.com/wullewutz/soundboi
 cd soundboi
-cargo build --release
+cargo install --path .
 ```
 
-Place the resulting executable `target/release/soundboi`
-somewhere in your `$PATH` to make it accessible from anywhere
+To uninstall, run
+```
+cargo uninstall soundboi
+```
 
 ## usage
 
