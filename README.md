@@ -34,7 +34,7 @@ cargo uninstall soundboi
 
 Place all your sound samples in a folder.
 
-First character of each filename will be used to the trigger the sample when
+First character of each filename will be used to trigger the sample when
 pressed on the keyboard.
 Therefore, first characters have to be unique for all files.
 To achieve this you can (and should) prefix each file with the desired trigger
